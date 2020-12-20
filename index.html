@@ -12,11 +12,9 @@
 
 <body>
     <header>
-        <a href="#"></a>
-        <a href="#"></a>
+        <div class="backButton" onclick="backToMainMenu()"></div>
         <div class="title">CAFE MULTISO</div>
-        <a href="#"></a>
-        <a href="#"></a>
+        <div class="cart" onclick="toggleCart()"></div>
     </header>
     <div class="wrapper">
         <div class="menuItems">
@@ -37,8 +35,6 @@
                 <img src="https://globalassets.starbucks.com/assets/5c515339667943ce84dc56effdf5fc1b.jpg" />
             </div>
 
-
-
             <div class="tea" id="O5">
                 <img src="https://globalassets.starbucks.com/assets/6f780d5d392542c6b9b1a4412881cecc.jpg" />
             </div>
@@ -48,7 +44,6 @@
             <div class="mocha" id="O7">
                 <img src="https://globalassets.starbucks.com/assets/f4ec500b34624242b15c2d29e53f3c48.jpg" />
             </div>
-
 
             <div class="icedTea" id="O8">
                 <img src="https://globalassets.starbucks.com/assets/9d487fd1bd5048ef8190689b2d4fe167.jpg" />
@@ -75,17 +70,17 @@
             <div class="name"></div>
             <div class="price"></div>
             <button class="addCart">ADD TO CART</button>
-            <div class="des"></div>
-
+            <div class="description"></div>
         </div>
 
-        <div class = "cartAndButton">
+        <div class="cartWrapper">
+            <div class="cartHeader">Cart</div>
             <div id="checkout">
-                <div class="checkoutItems"></div><br>
-                <div class="totalCost"></div>
+                <div class="checkoutItems"></div>
             </div>
-        <button class="cart" onclick="toggleCart()">CART</button>
-    </div>
+            <div class="costAndPrice">
+            <div class="totalCost">Total Cost:</div><div class="totalCostPrice"></div></div>
+        </div>
     </div>
 
 
