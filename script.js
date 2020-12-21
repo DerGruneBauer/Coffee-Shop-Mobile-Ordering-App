@@ -22,11 +22,11 @@ let description = document.querySelector('.description');
 let menuItemDiv = document.querySelectorAll('.menuItems div');
 let cartHeader = document.querySelector('.cartHeader');
 let cartWrapper = document.querySelector('.cartWrapper');
+cartWrapper.style.height = "0px";
 let addButton = document.querySelector('.addCart');
 let deleteButton = document.querySelectorAll('.delete');
 let checkout = document.querySelector('.checkoutItems');
 let checkoutOutside = document.getElementById('checkout');
-cartWrapper.style.height = "0px";
 let cartButton = document.querySelector('.cart');
 let cost = document.querySelector('.totalCost');
 let menuItems = document.querySelector('.menuItems');
@@ -34,14 +34,14 @@ let cart = [];
 let totalCost = 0;
 let newCartItem;
 let index;
-let priceInCart;
 let totalCostPrice = document.querySelector('.totalCostPrice');
+let checkoutButton = document.querySelector('.checkoutButton');
 
 //Toggle cart open or close
 const toggleCart = () => {
 
     if (cartWrapper.style.height == '0px'){
-        cartWrapper.style.height = '450px';
+        cartWrapper.style.height = '500px';
         cartWrapper.style.transition = 'height 1s'
         checkout.style.display = 'block';
         cost.style.display = 'block';
@@ -49,6 +49,7 @@ const toggleCart = () => {
         menuItems.style.transition = 'opacity 1s';
         cartHeader.style.display = 'block';
         totalCostPrice.style.display = 'block';
+        checkoutButton.style.display = 'block';
     } else {
         cartWrapper.style.height = '0px';
         checkout.style.display = 'none';
@@ -58,6 +59,7 @@ const toggleCart = () => {
         menuItems.style.transition = 'opacity 1s';
         cartHeader.style.display = 'none';
         totalCostPrice.style.display = 'none';
+        checkoutButton.style.display = 'none';
     }
 }
 
@@ -79,7 +81,7 @@ const addToCart = () => {
     newCartItem.appendChild(itemPicture);
     newCartItem.appendChild(itemDetails);
     newCartItem.classList.add('newCartItem');
-    newCartItem.innerHTML = `${newCartItem.innerHTML} <button id=O${index} class ="delete" onclick='removeFromCart()'>X</button>`;
+    newCartItem.innerHTML = `${newCartItem.innerHTML} <button id=I${index} class ="delete" onclick='removeFromCart()'>X</button>`;
     checkout.appendChild(newCartItem);
 
     totalCost = cafeItems[itemId].price + totalCost; 
@@ -96,20 +98,16 @@ let removeFromCart = function () {
 
     cartItems.forEach((newCartItem) => {
         const deleteItem = () => {
+
             let deletedItem = newCartItem.lastChild.id;
             let deletedItemId = deletedItem.substring(1);
-            
-            newCartItem.remove();
+            let deletedItemElement = document.getElementById(deletedItem);
+            deletedItemElement.parentNode.remove();
+            cart.splice(deletedItemId, 1);
 
             let removePrice = newCartItem.firstChild.innerText;
-            
-            console.log(newCartItem.firstChild.innerText);
-
             totalCost = totalCost - removePrice;
             totalCostPrice.innerHTML = totalCost;
-
-
-                cart.splice(deletedItemId, 1);
         }
         newCartItem.addEventListener("click", deleteItem);
     })
@@ -143,5 +141,14 @@ for (const element of Array.from(menuItemDiv)) {
 }
 
 const backToMainMenu = () => {
+    let bodyWrapper = document.querySelector('.wrapper');
+    let headerWrapper = document.querySelector('header');
+    let mainMenu = document.querySelector('.mainMenu');
+
+    bodyWrapper.style.display = 'none';
+    headerWrapper.style.display = 'none';
+    mainMenu.style.display = 'flex';
+    mainMenu.style.transition = 'opacity 5s';
+    mainMenu.style.opacity = '.5';
 
 }
